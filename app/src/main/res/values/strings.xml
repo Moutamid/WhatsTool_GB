@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GbWhatsTool</string>
+    <string name="your_result_will_be_here">Your Result will be here...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Interstial_ID">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="Banner_ID">ca-app-pub-3940256099942544/6300978111</string>
+</resources>
