@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
-rootProject.name = "GbWhatsTool"
+rootProject.name = "GbOneTools"
 include ':app'

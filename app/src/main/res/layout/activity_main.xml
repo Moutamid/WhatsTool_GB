@@ -102,7 +102,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/poppins"
                                 android:gravity="center_vertical"
-                                android:text="Save your whatsapp status"
+                                android:text="Save your WA status"
                                 android:textColor="@color/off_white"
                                 android:textSize="15sp" />
 
