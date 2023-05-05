@@ -1,8 +1,7 @@
-package com.moutamid.gbwhatstool;
+package com.moutamid.gbonetools;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -10,42 +9,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.moutamid.gbwhatstool.databinding.ActivityTextRepeatBinding;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.databinding.ActivityBlankMessageBinding;
+import com.moutamid.gbonetools.utilis.Constants;
 
-public class TextRepeatActivity extends AppCompatActivity {
-    ActivityTextRepeatBinding binding;
-    String s = "";
+public class BlankMessageActivity extends AppCompatActivity {
+    ActivityBlankMessageBinding binding;
+    String space = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTextRepeatBinding.inflate(getLayoutInflater());
+        binding = ActivityBlankMessageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Constants.calledIniti(this);
         Constants.loadIntersAD(this, this);
         Constants.showBannerAdd(binding.adView);
         binding.goback.setOnClickListener(v -> {
             onBackPressed();
-        });
-
-        binding.repeatbtn.setOnClickListener(v -> {
-            if (binding.repeat.getText().toString().isEmpty() || binding.message.getText().toString().isEmpty()){
-                Toast.makeText(this, "Please Enter The Required Data", Toast.LENGTH_SHORT).show();
-            } else {
-                if (binding.newLineSwitch.isChecked()) {
-                    int t = Integer.parseInt(binding.repeat.getText().toString());
-                    for (int i = 0; i < t; i++) {
-                        s = s + binding.message.getText().toString() + "\n";
-                    }
-                    binding.result.setText(s);
-                } else {
-                    int t = Integer.parseInt(binding.repeat.getText().toString());
-                    for (int i = 0; i < t; i++) {
-                        s = s + binding.message.getText().toString() + " ";
-                    }
-                    binding.result.setText(s);
-                }
-            }
         });
 
         binding.copy.setOnClickListener(v -> {
@@ -68,7 +47,7 @@ public class TextRepeatActivity extends AppCompatActivity {
 
         binding.share.setOnClickListener(v -> {
             if (binding.result.getText().toString().equals("Your Result will be here...")){
-                Toast.makeText(this, "Please repeat some text first", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please create some blank message first", Toast.LENGTH_SHORT).show();
             } else {
                 Intent whatsappIntent = new Intent("android.intent.action.SEND");
                 whatsappIntent.setType("text/plain");
@@ -76,19 +55,36 @@ public class TextRepeatActivity extends AppCompatActivity {
                 try {
                     startActivity(whatsappIntent);
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(TextRepeatActivity.this, "Some problems", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BlankMessageActivity.this, "Some problems", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         binding.delete.setOnClickListener(v -> {
             binding.repeat.setText("");
-            binding.message.setText("");
             binding.result.setText("Your Result will be here...");
-            s = "";
+            binding.result.setBackgroundResource(0);
+            space = "";
+        });
+
+        binding.repeatbtn.setOnClickListener(v -> {
+            if (binding.repeat.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Please add some length", Toast.LENGTH_SHORT).show();
+            }else {
+                int j = Integer.parseInt(binding.repeat.getText().toString());
+                if (binding.newLineSwitch.isChecked()){
+                    for (int i=0; i<j; i++){
+                        space = space + "\u3164" + "\n";
+                    }
+                } else {
+                    for (int i =0; i<j; i++){
+                        space = space + "\u3164";
+                    }
+                }
+                binding.result.setText(space);
+                binding.result.setBackgroundResource(R.drawable.round);
+            }
         });
 
     }
-
-
 }

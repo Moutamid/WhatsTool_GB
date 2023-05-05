@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool;
+package com.moutamid.gbonetools;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.moutamid.gbwhatstool.databinding.ActivityTextToEmojiBinding;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.databinding.ActivityTextToEmojiBinding;
+import com.moutamid.gbonetools.utilis.Constants;
 
 import java.io.IOException;
 import java.io.InputStream;

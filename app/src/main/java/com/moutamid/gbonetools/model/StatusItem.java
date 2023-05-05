@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool.model;
+package com.moutamid.gbonetools.model;
 
 import android.net.Uri;
 

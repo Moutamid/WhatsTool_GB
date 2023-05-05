@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool.adapters;
+package com.moutamid.gbonetools.adapters;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
@@ -20,11 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
-import com.moutamid.gbwhatstool.R;
-import com.moutamid.gbwhatstool.model.StatusItem;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.R;
+import com.moutamid.gbonetools.model.StatusItem;
 
-import java.io.File;
 import java.util.List;
 
 public class ShareAdapter extends RecyclerView.Adapter<ShareAdapter.StatusVH> {
@@ -61,7 +58,7 @@ public class ShareAdapter extends RecyclerView.Adapter<ShareAdapter.StatusVH> {
             StrictMode.setVmPolicy(builder.build());
             Uri imageUri = null;
             if (item.getFilePath() != null) {
-                imageUri = FileProvider.getUriForFile(context, "com.moutamid.gbwhatstool.provider", item.getFile());
+                imageUri = FileProvider.getUriForFile(context, "com.moutamid.gbonetools.provider", item.getFile());
             }
 
             Intent intent = new Intent(Intent.ACTION_SEND);

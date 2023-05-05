@@ -3,16 +3,16 @@ plugins {
 }
 
 android {
-    namespace 'com.moutamid.gbwhatstool'
+    namespace 'com.moutamid.gbonetools'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.moutamid.gbwhatstool"
+        applicationId "com.moutamid.gbonetools"
         minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        setProperty("archivesBaseName", "GbWhatstool-$versionName")
+        setProperty("archivesBaseName", "GbOneTools-$versionName")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

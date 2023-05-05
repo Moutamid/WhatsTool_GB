@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool;
+package com.moutamid.gbonetools;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,15 +7,12 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
-import com.moutamid.gbwhatstool.databinding.ActivityQrscannerBinding;
-import com.moutamid.gbwhatstool.utilis.Constants;
-
-import java.security.Permission;
+import com.moutamid.gbonetools.databinding.ActivityQrscannerBinding;
+import com.moutamid.gbonetools.utilis.Constants;
 
 public class QRScannerActivity extends AppCompatActivity {
     ActivityQrscannerBinding binding;

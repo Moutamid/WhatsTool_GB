@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool.adapters;
+package com.moutamid.gbonetools.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
-import com.moutamid.gbwhatstool.R;
-import com.moutamid.gbwhatstool.model.StatusItem;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.R;
+import com.moutamid.gbonetools.model.StatusItem;
+import com.moutamid.gbonetools.utilis.Constants;
 
 import java.io.File;
 import java.util.List;

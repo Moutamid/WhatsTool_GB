@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool;
+package com.moutamid.gbonetools;
 
 import static android.content.ContentValues.TAG;
 
@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.moutamid.gbwhatstool.databinding.ActivityDirectChatBinding;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.databinding.ActivityDirectChatBinding;
+import com.moutamid.gbonetools.utilis.Constants;
 
 public class DirectChatActivity extends AppCompatActivity {
     ActivityDirectChatBinding binding;

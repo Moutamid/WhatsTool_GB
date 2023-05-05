@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool.fragments;
+package com.moutamid.gbonetools.fragments;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -14,13 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.moutamid.gbwhatstool.R;
-import com.moutamid.gbwhatstool.adapters.ShareAdapter;
-import com.moutamid.gbwhatstool.adapters.StatusAdapter;
-import com.moutamid.gbwhatstool.databinding.FragmentImageBinding;
-import com.moutamid.gbwhatstool.databinding.FragmentSavedBinding;
-import com.moutamid.gbwhatstool.model.StatusItem;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.R;
+import com.moutamid.gbonetools.adapters.ShareAdapter;
+import com.moutamid.gbonetools.databinding.FragmentImageBinding;
+import com.moutamid.gbonetools.databinding.FragmentSavedBinding;
+import com.moutamid.gbonetools.model.StatusItem;
+import com.moutamid.gbonetools.utilis.Constants;
 
 import java.io.File;
 import java.util.ArrayList;

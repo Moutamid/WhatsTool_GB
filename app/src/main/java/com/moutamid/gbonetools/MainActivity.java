@@ -1,12 +1,12 @@
-package com.moutamid.gbwhatstool;
+package com.moutamid.gbonetools;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.moutamid.gbwhatstool.databinding.ActivityMainBinding;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.databinding.ActivityMainBinding;
+import com.moutamid.gbonetools.utilis.Constants;
 
 public class MainActivity extends AppCompatActivity {
 

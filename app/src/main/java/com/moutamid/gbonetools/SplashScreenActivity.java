@@ -1,14 +1,11 @@
-package com.moutamid.gbwhatstool;
+package com.moutamid.gbonetools;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
 
-import com.moutamid.gbwhatstool.databinding.ActivitySplashScreenBinding;
+import com.moutamid.gbonetools.databinding.ActivitySplashScreenBinding;
 
 public class SplashScreenActivity extends AppCompatActivity {
     ActivitySplashScreenBinding binding;

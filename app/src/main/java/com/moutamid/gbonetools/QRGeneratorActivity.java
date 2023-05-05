@@ -1,6 +1,4 @@
-package com.moutamid.gbwhatstool;
-
-import static android.content.ContentValues.TAG;
+package com.moutamid.gbonetools;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -9,19 +7,15 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.google.zxing.WriterException;
-import com.moutamid.gbwhatstool.databinding.ActivityQrgeneratorBinding;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.databinding.ActivityQrgeneratorBinding;
+import com.moutamid.gbonetools.utilis.Constants;
 
 import java.io.File;
 

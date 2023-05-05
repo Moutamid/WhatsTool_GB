@@ -1,4 +1,4 @@
-package com.moutamid.gbwhatstool.utilis;
+package com.moutamid.gbonetools.utilis;
 
 import static android.content.ContentValues.TAG;
 
@@ -18,19 +18,16 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.moutamid.gbwhatstool.R;
-import com.moutamid.gbwhatstool.model.StatusItem;
+import com.moutamid.gbonetools.R;
+import com.moutamid.gbonetools.model.StatusItem;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -118,44 +115,6 @@ public class Constants {
                         mInterstitialAd = null;
                     }
                 });
-
-//        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
-//            @Override
-//            public void onAdClicked() {
-//                // Called when a click is recorded for an ad.
-//                Log.d(TAG, "Ad was clicked.");
-//            }
-//
-//            @Override
-//            public void onAdDismissedFullScreenContent() {
-//                // Called when ad is dismissed.
-//                // Set the ad reference to null so you don't show the ad a second time.
-//                Log.d(TAG, "Ad dismissed fullscreen content.");
-//                mInterstitialAd = null;
-//            }
-//
-//            @Override
-//            public void onAdFailedToShowFullScreenContent(AdError adError) {
-//                // Called when ad fails to show.
-//                Log.e(TAG, "Ad failed to show fullscreen content.");
-//                mInterstitialAd = null;
-//            }
-//
-//            @Override
-//            public void onAdImpression() {
-//                // Called when an impression is recorded for an ad.
-//                Log.d(TAG, "Ad recorded an impression.");
-//            }
-//
-//            @Override
-//            public void onAdShowedFullScreenContent() {
-//                // Called when ad is shown.
-//                Log.d(TAG, "Ad showed fullscreen content.");
-//            }
-//        });
-
-
-
     }
 
     public static boolean copyFileInSavedDir(Context context, String path, String name) {

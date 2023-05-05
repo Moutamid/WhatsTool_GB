@@ -1,28 +1,28 @@
-package com.moutamid.gbwhatstool.fragments;
+package com.moutamid.gbonetools.fragments;
 
+import static android.content.ContentValues.TAG;
 import static android.os.Build.VERSION.SDK_INT;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.fxn.stash.Stash;
-import com.moutamid.gbwhatstool.R;
-import com.moutamid.gbwhatstool.adapters.StatusAdapter;
-import com.moutamid.gbwhatstool.databinding.FragmentVideoBinding;
-import com.moutamid.gbwhatstool.model.StatusItem;
-import com.moutamid.gbwhatstool.utilis.Constants;
+import com.moutamid.gbonetools.R;
+import com.moutamid.gbonetools.adapters.StatusAdapter;
+import com.moutamid.gbonetools.databinding.FragmentImageBinding;
+import com.moutamid.gbonetools.model.StatusItem;
+import com.moutamid.gbonetools.utilis.Constants;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,19 +30,20 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class VideoFragment extends Fragment {
-    FragmentVideoBinding binding;
+public class ImageFragment extends Fragment {
+    FragmentImageBinding binding;
     List<StatusItem> statusItems = new ArrayList<>();
     StatusAdapter adapter;
     private ProgressBar progressBar;
-    public VideoFragment() {
+    public ImageFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentVideoBinding.inflate(getLayoutInflater(), container, false);
+        binding =  FragmentImageBinding.inflate(getLayoutInflater(), container, false);
+
         binding.recycler.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         binding.recycler.setHasFixedSize(false);
 
@@ -53,62 +54,63 @@ public class VideoFragment extends Fragment {
     }
 
     private void getItems() {
-        List<StatusItem> allVideoItems = new ArrayList<>();
-
         statusItems.clear();
-        allVideoItems = Constants.allWAVideoItems;
-        
-        List<StatusItem> finalAllVideoItems = allVideoItems;
+        List<StatusItem> allImageItems = new ArrayList<>();
+        allImageItems = Constants.allWAImageItems;
+        List<StatusItem> finalAllImageItems = allImageItems;
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (StatusItem item : finalAllVideoItems) {
+                for (StatusItem item : finalAllImageItems) {
                     if (new File(Constants.SAVED_FOLDER, item.getFileName()).exists())
                         item.setDownloaded(true);
                     statusItems.add(item);
-                    //recentAdapter.notifyItemChanged(statusItems.size() - 1);
-                }
 
-                requireActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                    //adapter.notifyItemChanged(statusItems.size() - 1);
+
+                    requireActivity().runOnUiThread(() -> {
                         if (!statusItems.isEmpty()) binding.noStatusLayout.setVisibility(View.GONE);
                         else binding.noStatusLayout.setVisibility(View.VISIBLE);
                         adapter = new StatusAdapter(getContext(), statusItems);
                         binding.recycler.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-                    }
-                });
-
+                    });
+                }
             }
         }).start();
     }
-
     private void getStatus() {
         DocumentFile[] allDocumentFiles = getFromSdcard();
         List<StatusItem> tempItems = new ArrayList<>();
+
         binding.noStatusLayout.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if (allDocumentFiles != null) {
 
                     for (DocumentFile documentFile : allDocumentFiles) {
-                        if (!documentFile.getUri().toString().contains(".nomedia"))
-                            if (documentFile.getUri().toString().endsWith(".mp4")
-                                    || documentFile.getUri().toString().endsWith(".3gp")) {
+                        if (!documentFile.getUri().toString().contains(".nomedia")) {
+                            if (documentFile.getUri().toString().endsWith(".jpg")
+                                    || documentFile.getUri().toString().endsWith(".jpeg")
+                                    || documentFile.getUri().toString().endsWith(".png")) {
 
                                 StatusItem item = new StatusItem();
                                 item.setFileUri(documentFile.getUri());
                                 item.setFileName(documentFile.getName());
+                                item.setImage(true);
                                 item.setTimeStamp(documentFile.lastModified());
-                                item.setImage(false);
+                                Log.e(TAG, "Image Status: " + documentFile.lastModified());
+                                //Log.e(TAG, "Get Status Called");
+
                                 if (new File(Constants.SAVED_FOLDER, item.getFileName()).exists())
                                     item.setDownloaded(true);
 
                                 tempItems.add(item);
                             }
+                        }
                     }
                 }
 
@@ -121,12 +123,16 @@ public class VideoFragment extends Fragment {
                             Collections.sort(statusItems, Comparator.comparing(StatusItem::getTimeStamp));
                         }
                         Collections.reverse(statusItems);
-                        Constants.allWAVideoItems.clear();
-                        Constants.allWAVideoItems.addAll(statusItems);
+                        Constants.allWAImageItems.clear();
+                        Constants.allWAImageItems.addAll(statusItems);
 
                         progressBar.setVisibility(View.GONE);
-                        if (!statusItems.isEmpty()) binding.noStatusLayout.setVisibility(View.GONE);
-                        else binding.noStatusLayout.setVisibility(View.VISIBLE);
+                        if (!statusItems.isEmpty()) {
+                            binding.noStatusLayout.setVisibility(View.GONE);
+                        } else {
+                            binding.noStatusLayout.setVisibility(View.VISIBLE);
+                        }
+
                         adapter = new StatusAdapter(getContext(), statusItems);
                         binding.recycler.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
@@ -135,13 +141,6 @@ public class VideoFragment extends Fragment {
 
             }
         }).start();
-    }
-
-    private DocumentFile[] getFromSdcard() {
-        String str = Stash.getString(Constants.WaSavedRoute);
-
-        DocumentFile documentFile = DocumentFile.fromTreeUri(requireContext().getApplicationContext(), Uri.parse(str));
-        return (documentFile != null && documentFile.exists()) ? documentFile.listFiles() : null;
     }
 
     @Override
@@ -153,5 +152,13 @@ public class VideoFragment extends Fragment {
             getItems();
         }
     }
-    
+
+    private DocumentFile[] getFromSdcard() {
+        String str = Stash.getString(Constants.WaSavedRoute);
+
+        DocumentFile documentFile = DocumentFile.fromTreeUri(requireContext().getApplicationContext(), Uri.parse(str));
+
+        return (documentFile != null && documentFile.exists()) ? documentFile.listFiles() : null;
+    }
+
 }
