@@ -82,19 +82,19 @@ public class Constants {
     }
 
     public static void calledIniti(Context context){
-        /*MobileAds.initialize(context, new OnInitializationCompleteListener() {
+        MobileAds.initialize(context, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });*/
+        });
     }
 
     public static void showBannerAdd(AdView  mAdView){
-        /*mAdView.loadAd(adRequest);*/
+        mAdView.loadAd(adRequest);
     }
 
     public static void loadIntersAD(Context context, Activity activity) {
 
-        /*InterstitialAd.load(context, context.getString(R.string.Interstial_ID), adRequest,
+        InterstitialAd.load(context, context.getString(R.string.Interstial_ID), adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -115,7 +115,7 @@ public class Constants {
                         Log.d(TAG, loadAdError.toString());
                         mInterstitialAd = null;
                     }
-                });*/
+                });
     }
 
     public static boolean copyFileInSavedDir(Context context, String path, String name) {
